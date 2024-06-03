@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SearchProductsController::class, 'index']);
 
-Route::get('/cart', function () {
-    return view('cart');
-});
-
+Route::get('cart', [CartController::class, 'index']);
+Route::post('cart', [CartController::class, 'store']);
+Route::delete('cart/{id}', [CartController::class, 'destroy']);
+Route::patch('cart/{id}', [CartController::class, 'update']);
 
 Route::get('/checkout', function () {
     return view('checkout');
